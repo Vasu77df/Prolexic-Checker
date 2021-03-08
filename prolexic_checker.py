@@ -19,19 +19,19 @@ def checker(json_file):
             print("not there")
             not_routed.append(ip)
     print(not_routed)
-    with SMTP("cl-mont-1vms01.americaneagle.com") as ae_smtp:
+    with SMTP("mail.server.com") as ae_smtp:
         if not not_routed:
             SUBJECT = "Prolexic IP Checker Alert"
             TEXT = "Checked all IP addresses and all are routed through AKAMAI or PROLEXIC."
-            FROM ='noreply@americaneagle.com'
-            TO = ['vasudevan.perumal@americaneagle.com']
+            FROM ='noreply@mail.com'
+            TO = ['vasudevan.perumal@mail.com']
             msg = 'From: {}\n To: {}\nSubject: {}\n\n{}'.format(FROM, TO[0], SUBJECT, TEXT)
             ae_smtp.sendmail(FROM, TO, msg)
         else:
             SUBJECT = "Prolexic IP Checker Alert"
             TEXT = "The IP addresses not routed through PROLEXIC or AKAMAI are {not_routed}. Please Check Them!".format(not_routed=not_routed)
-            FROM ='noreply@americaneagle.com'
-            TO = ['vasudevan.perumal@americaneagle.com']
+            FROM ='noreply@mail.com'
+            TO = ['vasudevan.perumal@mail.com']
             msg = 'From: {}\n To: {}\nSubject: {}\n\n{}'.format(FROM, TO[0], SUBJECT, TEXT)
             ae_smtp.sendmail(FROM, TO, msg)
         
